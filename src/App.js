@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import { Button } from './Button';
+import { Counter } from './Counter';
 
-function App() {
+export const App = () => {
+  const [buttonCounts, setButtonCounts] = useState([0,0]);
+
+  const handleClick = (index) => () => {
+    console.log('handling click for index', index);
+    const count = buttonCounts[index] + 1;
+    index === 0 ? setButtonCounts([count, buttonCounts[1]]) : setButtonCounts([buttonCounts[0], count])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button name="firstButton" onClick={handleClick(0)} text="Button #1" />
+      <Button name="secondButton" onClick={handleClick(1)} text="Button #2" />
+      <Counter counts={buttonCounts} />
+    </>
   );
 }
 
