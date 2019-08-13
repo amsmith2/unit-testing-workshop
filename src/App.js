@@ -13,11 +13,11 @@ export const App = () => {
   }
 
   return (
-    <>
+    <div data-testid="count-wrapper">
       <Button name="firstButton" onClick={handleClick(0)} text="Button #1" />
       <Button name="secondButton" onClick={handleClick(1)} text="Button #2" />
       <Counter counts={buttonCounts} />
-    </>
+    </div>
   );
 }
 
